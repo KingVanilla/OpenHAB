@@ -1,0 +1,50 @@
+rule "Motion detected"
+when
+	Item alarmZone1 changed to Motion or Item alarmZone2 changed to Motion
+then
+	if(alarmStatus.state.toString == "Armed") {		//If motion is detected and system is armed
+		alarmStatus.sendCommand("Triggered")
+	}
+	if(alarmStatus.state.toString == "Chime") {		//If motion is detected and system is on chime
+		playSound("chime.mp3")
+	}
+end
+rule "Keypad input"
+when
+	Item alarmKeypadInput received command
+then
+	if(alarmKeypadInput.state.toString == "1234") {		//If correct PIN is entered
+		if(alarmStatus.state.toString != "Disarmed") {		//And system is not disarmed
+			alarmStatus.sendCommand("Disarmed")
+		}
+	}
+	if(alarmKeypadInput.state.toString != "1234") {		//If incorrect PIN is entered
+		playSound("incorrect.mp3")
+	}
+end
+rule "Alarm given command"
+when
+	Item alarmStatus received update
+then
+	switch(alarmStatus.state.toString) {
+		case "Arm": {
+			alarmControllerCommand.sendCommand("Arm")
+		}
+		case "Armed": {
+			playSound("armed.mp3")
+		}
+		case "Disarmed": {
+			alarmControllerCommand.sendCommand("Disarmed")
+			playSound("welcome.mp3")
+		}
+		case "Chime": {
+			alarmControllerCommand.sendCommand("Chime")
+			playSound("chime.mp3")
+		}
+		case "Triggered": {
+			alarmControllerCommand.sendCommand("Triggered")
+			playSound("alarm triggered.mp3")
+			sendNotification("****@****.com", "WARNING, home alarm triggered!")
+		}
+	}
+end
