@@ -1,0 +1,5 @@
+String alarmStatus "[%s]" {mqtt="<[mosquitto:/home/alarm/controller/state:state:default"}
+String alarmControllerCommand {mqtt=">[mosquitto:/home/alarm/controller/command:command:*:default]"}
+String alarmKeypadInput "Input [%s]"
+String alarmZone1 {mqtt="<[mosquitto:/home/alarm/zone1/state:state:default"}
+String alarmZone2 {mqtt="<[mosquitto:/home/alarm/zone2/state:state:default"}
