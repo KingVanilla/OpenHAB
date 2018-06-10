@@ -13,8 +13,6 @@ My family has several [Bravo5 motion detectors](http://www.dsc.com/alarm-securit
 - Button to control the lights on the main level of my home
 - Button and "Attention with Button" to control and display the status of my garage  
 
-![HABPanel](HABPanel.png)
-
 ## My PCB design files
 The PCB files in this repository feature a board which can interface with up to 4 motion sensors and 1 relay.  The board takes a 12V 5A power supply via a standard DC power-jack.  The design features 4 M3 mounting holes, 1 power LED connected to the 3.3V line, 1 LED connected to D5, and a screw-terminal connected to 12V which I have used to connect to the 4-conductor cabling to run power to the tablets.  You can, obviously, modify the design to meet your own specifications.
 
@@ -44,8 +42,6 @@ For each relay trigger you wish to interface with you will need:
  - [1x relay](https://www.digikey.com/product-detail/en/omron-electronics-inc-emc-div/G5LE-1-DC5/Z1014-ND/280368)
  - [1x 2-pin 3.5mm screw terminal](https://www.digikey.com/product-detail/en/phoenix-contact/1984617/277-1721-ND/950849)
 
-## Wiring it up
-It pretty simple to wire 
 
 ## How to make custom sound effects: 
 In my my alarmController.rules file you may have noticed that I have several sound files which I reference.  These files are contained within my "sounds" folder in my OpenHAB configuration on my Raspberry Pi.  These files are a combination of sound effects I complied using a YouTube to MP3 converter and [Siri text-to-speech using the "say" function](https://www.lifewire.com/mac-say-command-with-talking-terminal-2260772) through Terminal on my Mac.  I cannot upload the sound files here due to copyright restrictions, however, you would likely want to make your own custom sound effects anyways.  Here are what mine are:  
